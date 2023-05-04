@@ -1,0 +1,49 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:8.0.33
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+      - ./volumes/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: local
+    networks:
+      - network
+  sso-server:
+    build:
+      context: ../sso-server
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: sso-server
+    restart: always
+    ports:
+      - "9090:9090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/sso
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=local
+    networks:
+      - network
+  fakultet-back:
+    build:
+      context: ../fakultet-back
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: fakultet-back
+    restart: always
+    ports:
+      - "8080:8001"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fakultet
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=local
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
