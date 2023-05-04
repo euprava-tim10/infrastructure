@@ -58,6 +58,36 @@ services:
       - SPRING_DATASOURCE_PASSWORD=local
     networks:
       - network
+  szz-back:
+    build:
+      context: ../szz-back
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: szz-back
+    restart: always
+    ports:
+      - "8003:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/szz
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=local
+    networks:
+      - network
+  apr-back:
+    build:
+      context: ../apr-back
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: apr-back
+    restart: always
+    ports:
+      - "8004:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/apr
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=local
+    networks:
+      - network
 
 networks:
   network:
