@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `sso`;
 CREATE DATABASE IF NOT EXISTS `fakultet`;
+CREATE DATABASE IF NOT EXISTS `skola`;
 
 CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY 'local';
 GRANT ALL ON *.* TO 'root'@'localhost';

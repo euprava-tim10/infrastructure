@@ -36,9 +36,24 @@ services:
     container_name: fakultet-back
     restart: always
     ports:
-      - "8080:8001"
+      - "8001:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fakultet
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=local
+    networks:
+      - network
+  skola-back:
+    build:
+      context: ../skola-back
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: skola-back
+    restart: always
+    ports:
+      - "8002:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/skola
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
     networks:
