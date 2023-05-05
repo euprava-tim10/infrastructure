@@ -7,7 +7,6 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql-init:/docker-entrypoint-initdb.d
       - ./volumes/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: local
@@ -23,9 +22,11 @@ services:
     ports:
       - "9090:9090"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/sso
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/sso?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+    depends_on:
+      - mysql
     networks:
       - network
   fakultet-back:
@@ -38,9 +39,11 @@ services:
     ports:
       - "8001:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fakultet
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fakultet?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+    depends_on:
+      - mysql
     networks:
       - network
   skola-back:
@@ -53,9 +56,11 @@ services:
     ports:
       - "8002:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/skola
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/skola?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+    depends_on:
+      - mysql
     networks:
       - network
   szz-back:
@@ -68,9 +73,11 @@ services:
     ports:
       - "8003:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/szz
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/szz?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+    depends_on:
+      - mysql
     networks:
       - network
   apr-back:
@@ -83,9 +90,11 @@ services:
     ports:
       - "8004:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/apr
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/apr?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+    depends_on:
+      - mysql
     networks:
       - network
 
