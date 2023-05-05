@@ -97,6 +97,50 @@ services:
       - mysql
     networks:
       - network
+  fakultet-front:
+    build:
+      context: ../fakultet-front
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: fakultet-front
+    restart: always
+    ports:
+      - "4201:80"
+    networks:
+      - network
+  skola-front:
+    build:
+      context: ../skola-front
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: skola-front
+    restart: always
+    ports:
+      - "4202:80"
+    networks:
+      - network
+  szz-front:
+    build:
+      context: ../szz-front
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: szz-front
+    restart: always
+    ports:
+      - "4203:80"
+    networks:
+      - network
+  apr-front:
+    build:
+      context: ../apr-front
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: apr-front
+    restart: always
+    ports:
+      - "4204:80"
+    networks:
+      - network
 
 networks:
   network:
