@@ -25,6 +25,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/sso?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+      - SERVER_PORT=9090
     depends_on:
       - mysql
     networks:
@@ -42,6 +43,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fakultet?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+      - SERVER_PORT=8080
     depends_on:
       - mysql
     networks:
@@ -59,6 +61,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/skola?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+      - SERVER_PORT=8080
     depends_on:
       - mysql
     networks:
@@ -76,6 +79,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/szz?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+      - SERVER_PORT=8080
     depends_on:
       - mysql
     networks:
@@ -93,6 +97,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/apr?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=local
+      - SERVER_PORT=8080
     depends_on:
       - mysql
     networks:
